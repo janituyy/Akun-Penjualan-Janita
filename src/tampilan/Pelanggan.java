@@ -40,7 +40,7 @@ private static final java.util.logging.Logger logger = java.util.logging.Logger.
     String cariitem=txtcari.getText();
 
     try {
-        String sql = "SELECT * FROM pelanggan where id like '%"+cariitem+"%' or nmplg like '%"+cariitem+"%' order by id asc";
+        String sql = "SELECT * FROM pelanggan where id_plgn like '%"+cariitem+"%' or nmplgn like '%"+cariitem+"%' order by id_plgn asc";
         Statement stat = conn.createStatement();
         ResultSet hasil = stat.executeQuery(sql);
         while (hasil.next()){
@@ -396,7 +396,7 @@ private static final java.util.logging.Logger logger = java.util.logging.Logger.
         // TODO add your handling code here:
         int ok = JOptionPane.showConfirmDialog(null,"hapus","konfirmasi dialog",JOptionPane.YES_NO_OPTION);
     if (ok==0){
-        String sql = "delete from pelanggan where id ='"+txtid.getText()+"'";
+        String sql = "delete from pelanggan where id_plgn ='"+txtid.getText()+"'";
         try{
             PreparedStatement stat = conn.prepareStatement(sql);
             stat.executeUpdate();
@@ -420,7 +420,7 @@ private static final java.util.logging.Logger logger = java.util.logging.Logger.
         jenis = "Perempuan";
     }
     try{
-        String sql = "update pelanggan set nmplgn=?,jenis=?,telepon=?,alamat=? where id='"+txtid.getText()+"'";
+        String sql = "update pelanggan set nmplgn=?,jenis=?,telepon=?,alamat=? where id_plgn='"+txtid.getText()+"'";
         PreparedStatement stat = conn.prepareStatement(sql);
         stat.setString(1, txtnm.getText());
         stat.setString(2, jenis);
@@ -474,6 +474,7 @@ private static final java.util.logging.Logger logger = java.util.logging.Logger.
         stat.setString(3, jenis);
         stat.setString(4, txttelp.getText());
         stat.setString(5, txtalamat.getText());
+      
 
         stat.executeUpdate();
         JOptionPane.showMessageDialog(null, "data berhasil disimpan");
